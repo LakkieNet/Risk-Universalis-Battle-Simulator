@@ -1,0 +1,29 @@
+unit_type = {
+
+	id = "infantry"
+	
+	generic = "Assets/Images/UnitInfantry-Generic.png"
+	attacker = "Assets/Images/UnitInfantry-Attacker.png"
+	defender = "Assets/Images/UnitInfantry-Defender.png"
+
+}
+
+unit_type = {
+
+	id = "cavalry"
+	
+	generic = "Assets/Images/UnitCavalry-Generic.png"
+	attacker = "Assets/Images/UnitCavalry-Attacker.png"
+	defender = "Assets/Images/UnitCavalry-Defender.png"
+
+}
+
+unit_type = {
+
+	id = "armor"
+	
+	generic = "Assets/Images/UnitArmor-Generic.png"
+	attacker = "Assets/Images/UnitArmor-Attacker.png"
+	defender = "Assets/Images/UnitArmor-Defender.png"
+
+}

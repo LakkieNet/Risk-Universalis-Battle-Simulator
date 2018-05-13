@@ -1,0 +1,20 @@
+image = {
+
+	name = "info"
+	
+	resolution = {
+		quality = 128
+		path = "Assets/Images/Info-128.png"
+	}
+	
+	resolution = {
+		quality = 64
+		path = "Assets/Images/Info-64.png"
+	}
+
+	resolution = {
+		quality = 32
+		path = "Assets/Images/Info-32.png"
+	}
+
+}

@@ -1,0 +1,69 @@
+stage = {
+
+	id = "FULL_RETREAT"
+	
+	friendly_name = "Full Retreat"
+	
+	decision_factors = {
+		retreat_factor = 0.85
+		attack_factor = 0.05
+		still_factor = 0.1
+	}
+
+}
+
+stage = {
+	
+	id = "FALLBACK"
+
+	friendly_name = "Fallback"
+
+	decision_factors = {
+		retreat_factor = 0.6
+		attack_factor = 0.1
+		still_factor = 0.2
+	}
+
+}
+
+stage = {
+	
+	id = "STALEMATE"
+
+	friendly_name = "Stalemate"
+
+	decision_factors = {
+		retreat_factor = 0.15
+		attack_factor = 0.1
+		still_factor = 0.8
+	}
+
+}
+
+stage = {
+	
+	id = "FULL_OUT_ATTACK"
+
+	friendly_name = "Full-Out Attack"
+
+	decision_factors = {
+		retreat_factor = 0.05
+		attack_factor = 0.85
+		still_factor = 0.1
+	}
+
+}
+
+stage = {
+	
+	id = "GENERAL_ADVANCE"
+
+	friendly_name = "General Advance"
+
+	decision_factors = {
+		retreat_factor = 0.05
+		attack_factor = 0.65
+		still_factor = 0.30
+	}
+
+}
