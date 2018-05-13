@@ -12,19 +12,20 @@ import net.lakkie.battlesim.readers.UnitCoordinator;
 public class PositionedUnit implements Serializable {
 
 	private static final long serialVersionUID = -4009259352660549560L;
-	public Vector2 pos;
+	public Vector2i pos;
 	public int infantry = 1000, cavalry = 0, armor = 0;
 	public transient UnitActionType actionType;
 	public transient RUBSBattleAI ai;
-	public transient Vector2 aiTargetPos;
+	public transient Vector2i aiTargetPos;
+	public transient Vector2f posExact;
 
-	public PositionedUnit(Vector2 pos, UnitActionType actionType) {
+	public PositionedUnit(Vector2i pos, UnitActionType actionType) {
 		this.pos = pos;
 		this.actionType = actionType;
 	}
 
 	public PositionedUnit(int x, int y, UnitActionType actionType) {
-		this.pos = new Vector2(x, y);
+		this.pos = new Vector2i(x, y);
 		this.actionType = actionType;
 	}
 
@@ -58,7 +59,7 @@ public class PositionedUnit implements Serializable {
 		}
 	}
 
-	public void draw(Graphics g, Vector2 offset) {
+	public void draw(Graphics g, Vector2i offset) {
 		BufferedImage image = this.getImage();
 		g.drawImage(image, this.pos.x + offset.x, this.pos.y + offset.y,
 				image.getWidth() / 3, image.getHeight() / 3, null);

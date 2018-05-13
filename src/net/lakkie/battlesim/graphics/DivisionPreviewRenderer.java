@@ -12,7 +12,7 @@ import java.awt.image.BufferStrategy;
 import net.lakkie.battlesim.menus.MenuArmyEditor;
 import net.lakkie.battlesim.storage.PositionedUnit;
 import net.lakkie.battlesim.storage.UnitGroup;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 import net.lakkie.battlesim.util.BooleanCallback;
 
 public class DivisionPreviewRenderer
@@ -22,10 +22,10 @@ public class DivisionPreviewRenderer
 
 	public Canvas canvas;
 	public UnitGroup army;
-	public Vector2 offset = new Vector2(0, 0);
+	public Vector2i offset = new Vector2i(0, 0);
 	public BooleanCallback keepOffset, debug;
-	private Vector2 startPosition;
-	private Vector2 currentPosition;
+	private Vector2i startPosition;
+	private Vector2i currentPosition;
 	private boolean hasMoved, isDragging;
 
 	public DivisionPreviewRenderer(Canvas canvas, UnitGroup army,
@@ -69,7 +69,7 @@ public class DivisionPreviewRenderer
 
 	private void calculateOffset() {
 		if (!this.hasMoved) {
-			this.offset = new Vector2(0);
+			this.offset = new Vector2i(0);
 			return;
 		}
 		this.offset = this.currentPosition.subtract(this.startPosition);
@@ -81,9 +81,9 @@ public class DivisionPreviewRenderer
 
 	public void mousePressed(MouseEvent e) {
 		if (this.offset == null) {
-			this.startPosition = new Vector2(e.getX(), e.getY());
+			this.startPosition = new Vector2i(e.getX(), e.getY());
 		} else {
-			this.startPosition = new Vector2(e.getX(), e.getY())
+			this.startPosition = new Vector2i(e.getX(), e.getY())
 					.subtract(this.offset);
 		}
 	}
@@ -93,7 +93,7 @@ public class DivisionPreviewRenderer
 			this.hasMoved = false;
 			this.startPosition = null;
 			this.currentPosition = null;
-			this.offset = new Vector2(0);
+			this.offset = new Vector2i(0);
 		}
 		this.isDragging = false;
 	}
@@ -109,7 +109,7 @@ public class DivisionPreviewRenderer
 	public void mouseDragged(MouseEvent e) {
 		this.isDragging = true;
 		this.hasMoved = true;
-		this.currentPosition = new Vector2(e.getX(), e.getY());
+		this.currentPosition = new Vector2i(e.getX(), e.getY());
 	}
 
 	public void mouseMoved(MouseEvent e) {

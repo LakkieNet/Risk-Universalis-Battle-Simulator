@@ -1,8 +1,7 @@
 package net.lakkie.battlesim.ai;
 
-import net.lakkie.battlesim.BasicUtils;
 import net.lakkie.battlesim.storage.PositionedUnit;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2f;
 
 public class AIUnitOperator {
 
@@ -14,16 +13,17 @@ public class AIUnitOperator {
 	
 	public void initUnit(PositionedUnit unit) {
 		this.ai.pathfinder.searchAttackPath(unit);
+		unit.posExact = new Vector2f(unit.pos);
 	}
 
 	public void tickUnit(PositionedUnit unit) {
-		float dx = unit.aiTargetPos.x - unit.pos.x;
-		float dy = unit.aiTargetPos.y - unit.pos.y;
-		float slope = dy / dx;
-		float speedFactor = 2.5f;
-		int offsetY = (int)(slope * speedFactor * BasicUtils.getSignMultiplier(dx));
-		int offsetX = (int)(speedFactor * BasicUtils.getSignMultiplier(dy));
-		unit.pos = unit.pos.add(new Vector2(offsetX, offsetY));
+		float speed = 3.0f;
+		Vector2f delta = new Vector2f();
+		float slope = ((float)(unit.aiTargetPos.y) - unit.posExact.y)/((float)(unit.aiTargetPos.x) - unit.posExact.x);
+		delta.x = unit.aiTargetPos.x > unit.posExact.x ? slope * speed : -slope * speed;
+		delta.y = unit.aiTargetPos.y > unit.posExact.y ? 1f * speed : -1f * speed;
+		
+		unit.pos = unit.posExact.round();
 	}
 	
 	public void slowTickUnit(PositionedUnit unit) {

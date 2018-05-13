@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 import net.lakkie.battlesim.storage.PositionedUnit;
 import net.lakkie.battlesim.storage.RUBSBattle;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 
 public class RUBSBattleAI {
 
@@ -48,7 +48,7 @@ public class RUBSBattleAI {
 		}
 	}
 	
-	public void drawTargetPaths(Graphics2D g, Vector2 offset) {
+	public void drawTargetPaths(Graphics2D g, Vector2i offset) {
 		g.setColor(Color.red);
 		g.setStroke(new BasicStroke(2.0f));
 		for (PositionedUnit unit : this.battle.getAttacking().getUnits()) {
@@ -59,7 +59,7 @@ public class RUBSBattleAI {
 		}
 	}
 	
-	private void drawTargetPath(Graphics2D g, Vector2 offset, PositionedUnit unit) {
+	private void drawTargetPath(Graphics2D g, Vector2i offset, PositionedUnit unit) {
 		g.drawLine(offset.x + unit.pos.x + unit.getRenderWidth() / 2, offset.y + unit.pos.y + unit.getRenderWidth() / 2 - 3, offset.x + unit.aiTargetPos.x, offset.y + unit.aiTargetPos.y);
 	}
 	

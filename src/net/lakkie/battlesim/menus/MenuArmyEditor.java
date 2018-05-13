@@ -28,7 +28,7 @@ import net.lakkie.battlesim.readers.ReaderUtils;
 import net.lakkie.battlesim.storage.PositionedUnit;
 import net.lakkie.battlesim.storage.UnitActionType;
 import net.lakkie.battlesim.storage.UnitGroup;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 
 public class MenuArmyEditor extends JFrame implements WindowListener {
 
@@ -77,7 +77,7 @@ public class MenuArmyEditor extends JFrame implements WindowListener {
 		this.contentPane.add(buttonCreateNew);
 
 		buttonCreateNew.addActionListener((event) -> {
-			PositionedUnit unit = new PositionedUnit(new Vector2(0),
+			PositionedUnit unit = new PositionedUnit(new Vector2i(0),
 					UnitActionType.GENERIC);
 			try {
 				unit.infantry = Integer.parseInt(

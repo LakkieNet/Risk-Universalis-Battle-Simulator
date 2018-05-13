@@ -15,17 +15,17 @@ import javax.swing.border.TitledBorder;
 import net.lakkie.battlesim.menus.MenuArmyEditor;
 import net.lakkie.battlesim.storage.PositionedUnit;
 import net.lakkie.battlesim.storage.UnitGroup;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 
 public class UnitGroupEditor implements MouseListener, MouseMotionListener {
 
 	private UnitGroup army;
 	private Canvas canvas;
 	private Runnable drawRun = this::draw;
-	private Vector2 offset = new Vector2();
+	private Vector2i offset = new Vector2i();
 	private PositionedUnit currentDrag = null;
 	private boolean isMoving = false;
-	private Vector2 lastPosition = new Vector2();
+	private Vector2i lastPosition = new Vector2i();
 	private int mx, my;
 	private TitledBorder border;
 	private MenuArmyEditor editor;
@@ -88,8 +88,8 @@ public class UnitGroupEditor implements MouseListener, MouseMotionListener {
 	public void mouseDragged(MouseEvent e) {
 		this.mx = e.getX();
 		this.my = e.getY();
-		Vector2 newPosition = new Vector2(e.getX(), e.getY());
-		Vector2 deltaPosition = this.lastPosition.subtract(newPosition);
+		Vector2i newPosition = new Vector2i(e.getX(), e.getY());
+		Vector2i deltaPosition = this.lastPosition.subtract(newPosition);
 		if (this.isMoving) {
 			this.offset = this.offset.subtract(deltaPosition);
 		}
@@ -108,7 +108,7 @@ public class UnitGroupEditor implements MouseListener, MouseMotionListener {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		Vector2 pos = new Vector2(e.getX(), e.getY());
+		Vector2i pos = new Vector2i(e.getX(), e.getY());
 		this.lastPosition = pos;
 		switch (e.getButton()) {
 			case MouseEvent.BUTTON1 :

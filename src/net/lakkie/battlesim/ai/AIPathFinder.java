@@ -3,7 +3,7 @@ package net.lakkie.battlesim.ai;
 import java.util.Random;
 
 import net.lakkie.battlesim.storage.PositionedUnit;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 
 public class AIPathFinder {
 
@@ -15,7 +15,7 @@ public class AIPathFinder {
 	
 	public void searchAttackPath(PositionedUnit unit) {
 		PositionedUnit targetUnit = this.ai.battle.getNearestUnit(unit, false);
-		unit.aiTargetPos = targetUnit.pos.add(Vector2.random(100, new Random()));
+		unit.aiTargetPos = targetUnit.pos.add(Vector2i.random(100, new Random()));
 	}
 	
 }

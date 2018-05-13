@@ -13,7 +13,7 @@ import net.lakkie.battlesim.storage.PositionedUnit;
 import net.lakkie.battlesim.storage.RUBSBattle;
 import net.lakkie.battlesim.storage.UnitActionType;
 import net.lakkie.battlesim.storage.UnitGroup;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 import net.lakkie.battlesim.util.BooleanCallback;
 
 public class BattleRenderer implements MouseListener, MouseMotionListener {
@@ -21,13 +21,13 @@ public class BattleRenderer implements MouseListener, MouseMotionListener {
 	private RUBSBattle battle;
 	private Canvas canvas;
 	private Runnable drawer = this::draw;
-	private Vector2 viewportSize;
-	private Vector2 lastPos = new Vector2();
-	private Vector2 offset = new Vector2();
+	private Vector2i viewportSize;
+	private Vector2i lastPos = new Vector2i();
+	private Vector2i offset = new Vector2i();
 	private BooleanCallback targetPaths;
 	private RUBSBattleAI ai;
 	
-	public BattleRenderer(RUBSBattle battle, Canvas canvas, Vector2 viewportSize, BooleanCallback targetPaths) {
+	public BattleRenderer(RUBSBattle battle, Canvas canvas, Vector2i viewportSize, BooleanCallback targetPaths) {
 		this.battle = battle;
 		this.canvas = canvas;
 		this.viewportSize = viewportSize;
@@ -39,7 +39,7 @@ public class BattleRenderer implements MouseListener, MouseMotionListener {
 		}
 		for (PositionedUnit unit : this.battle.getDefending().getUnits()) {
 			unit.actionType = UnitActionType.DEFENDING;
-			unit.pos = unit.pos.add(new Vector2(this.viewportSize.x - unit.getRenderWidth() - 40, (this.viewportSize.y + unit.getRenderHeight()) / 2));
+			unit.pos = unit.pos.add(new Vector2i(this.viewportSize.x - unit.getRenderWidth() - 40, (this.viewportSize.y + unit.getRenderHeight()) / 2));
 		}
 		this.canvas.addMouseListener(this);
 		this.canvas.addMouseMotionListener(this);
@@ -82,7 +82,7 @@ public class BattleRenderer implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseDragged(MouseEvent e) {
-		Vector2 currPos = new Vector2(e.getX(), e.getY());
+		Vector2i currPos = new Vector2i(e.getX(), e.getY());
 		this.offset = this.offset.add(currPos.subtract(this.lastPos));
 		this.lastPos = currPos;
 	}
@@ -96,7 +96,7 @@ public class BattleRenderer implements MouseListener, MouseMotionListener {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		this.lastPos = new Vector2(e.getX(), e.getY());
+		this.lastPos = new Vector2i(e.getX(), e.getY());
 	}
 
 	public void mouseReleased(MouseEvent e) {

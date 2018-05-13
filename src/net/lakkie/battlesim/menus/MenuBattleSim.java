@@ -22,7 +22,7 @@ import javax.swing.border.TitledBorder;
 import net.lakkie.battlesim.BasicUtils;
 import net.lakkie.battlesim.graphics.BattleRenderer;
 import net.lakkie.battlesim.storage.RUBSBattle;
-import net.lakkie.battlesim.storage.Vector2;
+import net.lakkie.battlesim.storage.Vector2i;
 import net.lakkie.battlesim.util.AbstractButtonCallback;
 
 public class MenuBattleSim extends JFrame implements WindowListener {
@@ -81,7 +81,7 @@ public class MenuBattleSim extends JFrame implements WindowListener {
 		this.addWindowListener(this);
 		this.setResizable(false);
 		this.setVisible(true);
-		this.renderer = new BattleRenderer(this.battle, canvas, new Vector2(panel.getWidth(), panel.getHeight()), showTargetPaths);
+		this.renderer = new BattleRenderer(this.battle, canvas, new Vector2i(panel.getWidth(), panel.getHeight()), showTargetPaths);
 	}
 
 	public RUBSBattle getBattle() {
