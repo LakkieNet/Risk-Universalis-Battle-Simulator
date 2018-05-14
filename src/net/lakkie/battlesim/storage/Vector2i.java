@@ -39,6 +39,10 @@ public class Vector2i implements Serializable {
 		return new Vector2i(this.x / other.x, this.y / other.y);
 	}
 	
+	public int distance(Vector2i other) {
+		return (int) Math.sqrt(Math.pow(other.x - this.x, 2) + Math.pow(other.y - this.y, 2));
+	}
+	
 	public String toString() {
 		return String.format("[x=%s,y=%s]", this.x, this.y);
 	}

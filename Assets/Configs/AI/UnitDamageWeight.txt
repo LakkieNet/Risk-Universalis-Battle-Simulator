@@ -1,0 +1,29 @@
+damage_weight = {
+
+	id = "infantry"
+	
+	infantry_weight = 0.62
+	cavalry_weight = 0.32
+	armor_weight = 0.06
+
+}
+
+damage_weight = {
+
+	id = "cavalry"
+	
+	infantry_weight = 0.43
+	cavalry_weight = 0.54
+	armor_weight = 0.03
+
+}
+
+damage_weight = {
+
+	id = "armor"
+	
+	infantry_weight = 0.15
+	cavalry_weight = 0.05
+	armor_weight = 0.80
+
+}
