@@ -9,8 +9,6 @@ import net.lakkie.battlesim.storage.Vector2i;
 
 public class AIPathfinder extends AIBattleComponent {
 
-	public RUBSBattleAI ai;
-
 	public AIPathfinder(RUBSBattleAI ai) {
 		super(ai);
 	}

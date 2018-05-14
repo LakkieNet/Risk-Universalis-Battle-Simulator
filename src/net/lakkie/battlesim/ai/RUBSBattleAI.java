@@ -23,6 +23,7 @@ public class RUBSBattleAI {
 		this.battle = battle;
 		this.battle.ai = this;
 		this.battle.getAttacking().ai = this;
+		this.battle.getDefending().ai = this;
 		this.components.add(new AIPathfinder(this));
 		this.components.add(new AIDamageOperator(this));
 	}
