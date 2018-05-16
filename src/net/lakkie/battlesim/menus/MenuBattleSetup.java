@@ -29,7 +29,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 
 import net.lakkie.battlesim.BasicUtils;
-import net.lakkie.battlesim.BattleNameFormatter;
+import net.lakkie.battlesim.NamingUtils;
 import net.lakkie.battlesim.graphics.DivisionPreviewRenderer;
 import net.lakkie.battlesim.graphics.GraphicalGameLoop;
 import net.lakkie.battlesim.readers.ReaderUtils;
@@ -317,7 +317,7 @@ public class MenuBattleSetup extends JFrame {
 			}
 
 			public void keyReleased(KeyEvent e) {
-				textFieldEvalName.setText(BattleNameFormatter
+				textFieldEvalName.setText(NamingUtils
 						.getBattleName(textFieldName.getText()));
 			}
 

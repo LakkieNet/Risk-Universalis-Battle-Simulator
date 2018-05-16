@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 
-import net.lakkie.battlesim.BattleNameFormatter;
+import net.lakkie.battlesim.NamingUtils;
 import net.lakkie.battlesim.readers.ReaderUtils;
 import net.lakkie.battlesim.storage.RUBSBattle;
 
@@ -76,7 +76,7 @@ public class MenuStart extends JFrame {
 					MenuBattleSetup setup = new MenuBattleSetup();
 					setup.armyA = battle.getAttacking();
 					setup.armyD = battle.getDefending();
-					setup.textFieldName.setText(BattleNameFormatter.getRootBattleName(battle.getName()));
+					setup.textFieldName.setText(NamingUtils.getRootBattleName(battle.getName()));
 					setup.textFieldEvalName.setText(battle.getName());
 					setup.updateTroopInfo();
 				} catch (Exception e) {

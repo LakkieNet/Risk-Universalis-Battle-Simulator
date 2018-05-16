@@ -1,8 +1,5 @@
 package net.lakkie.battlesim.ai.components.decision;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.lakkie.battlesim.ai.RUBSBattleAI;
 import net.lakkie.battlesim.ai.components.AIBattleComponent;
 import net.lakkie.battlesim.ai.components.decision.modifiers.AIModifier;
@@ -29,14 +26,11 @@ public class AIDecisionOperator extends AIBattleComponent {
 	
 	public float calculateMorale(PositionedUnit unit) {
 		UnitType type = unit.getType();
-		List<AIModifier> modifiers = new ArrayList<AIModifier>();
 		float moraleResult = type.getBaseMorale(unit.actionType);
-		for (AIModifier modifier : modifiers) {
-			if (modifier.isActive(this.ai.battle, unit)) {
-				moraleResult += modifier.type.getValue();
-			}
+		for (AIModifier modifier : AIModifier.modifiers) {
+			moraleResult += modifier.getEffect(this.ai.battle, unit);
 		}
-		return 0f;
+		return moraleResult;
 	}
 
 }
