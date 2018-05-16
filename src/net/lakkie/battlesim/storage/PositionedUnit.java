@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import net.lakkie.battlesim.BasicUtils;
 import net.lakkie.battlesim.ai.RUBSBattleAI;
+import net.lakkie.battlesim.ai.components.decision.AIDecisionOperator;
 import net.lakkie.battlesim.readers.UnitCoordinator;
 
 public class PositionedUnit implements Serializable {
@@ -46,14 +47,11 @@ public class PositionedUnit implements Serializable {
 		UnitType type = this.getType();
 		switch (type) {
 			case ARMOR :
-				return UnitCoordinator.getInstance().getImager("armor")
-						.getById(this.actionType.getId());
+				return UnitCoordinator.getInstance().getImager("armor").getById(this.actionType.getId());
 			case CAVALRY :
-				return UnitCoordinator.getInstance().getImager("cavalry")
-						.getById(this.actionType.getId());
+				return UnitCoordinator.getInstance().getImager("cavalry").getById(this.actionType.getId());
 			case INFANTRY :
-				return UnitCoordinator.getInstance().getImager("infantry")
-						.getById(this.actionType.getId());
+				return UnitCoordinator.getInstance().getImager("infantry").getById(this.actionType.getId());
 			default :
 				return null;
 		}
@@ -61,11 +59,8 @@ public class PositionedUnit implements Serializable {
 
 	public void draw(Graphics g, Vector2i offset) {
 		BufferedImage image = this.getImage();
-		g.drawImage(image, this.pos.x + offset.x, this.pos.y + offset.y,
-				image.getWidth() / 3, image.getHeight() / 3, null);
-		String numbers = String.format("%s-%s-%s",
-				BasicUtils.formatCommas(this.infantry),
-				BasicUtils.formatCommas(this.cavalry),
+		g.drawImage(image, this.pos.x + offset.x, this.pos.y + offset.y, image.getWidth() / 3, image.getHeight() / 3, null);
+		String numbers = String.format("%s-%s-%s", BasicUtils.formatCommas(this.infantry), BasicUtils.formatCommas(this.cavalry),
 				BasicUtils.formatCommas(this.armor));
 		g.setColor(Color.black);
 		g.setFont(BasicUtils.getUnitInfoFont());
@@ -83,10 +78,6 @@ public class PositionedUnit implements Serializable {
 	public int getRenderHeight() {
 		return this.getImage().getHeight() / 3;
 	}
-	
-	public float getMorale() {
-		return this.ai.calculateMorale(this);
-	}
 
 	public PositionedUnit copy() {
 		PositionedUnit result = new PositionedUnit(this.pos, this.actionType);
@@ -94,6 +85,10 @@ public class PositionedUnit implements Serializable {
 		result.cavalry = this.cavalry;
 		result.armor = this.armor;
 		return result;
+	}
+
+	public float getMorale() {
+		return this.ai == null ? 0f : ((AIDecisionOperator) this.ai.getComponent(RUBSBattleAI.ID_DECISION)).calculateMorale(this);
 	}
 
 }

@@ -1,8 +1,9 @@
-package net.lakkie.battlesim.ai.components;
+package net.lakkie.battlesim.ai.components.pathfinder;
 
 import java.util.Random;
 
 import net.lakkie.battlesim.ai.RUBSBattleAI;
+import net.lakkie.battlesim.ai.components.AIBattleComponent;
 import net.lakkie.battlesim.storage.PositionedUnit;
 import net.lakkie.battlesim.storage.Vector2f;
 import net.lakkie.battlesim.storage.Vector2i;
