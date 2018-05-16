@@ -1,0 +1,7 @@
+modifier_db = {
+
+	id = "weather"
+	
+	db_base_modifier = 17.5
+
+}

@@ -1,9 +1,0 @@
-modifier_db = {
-
-	id = "weather"
-	
-	database = {
-		
-	}
-
-}
