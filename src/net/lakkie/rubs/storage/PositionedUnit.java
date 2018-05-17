@@ -88,7 +88,11 @@ public class PositionedUnit implements Serializable {
 	}
 
 	public float getMorale() {
-		return this.ai == null ? 0f : ((AIDecisionOperator) this.ai.getComponent(RUBSBattleAI.ID_DECISION)).calculateMorale(this);
+		return this.ai == null ? 0f : this.ai.getComponent(AIDecisionOperator.class).calculateMorale(this);
+	}
+
+	public String toString() {
+		return String.format("[pos=%s,infantry=%s,cavalry=%s,armor=%s]", this.pos, this.infantry, this.cavalry, this.armor);
 	}
 
 }

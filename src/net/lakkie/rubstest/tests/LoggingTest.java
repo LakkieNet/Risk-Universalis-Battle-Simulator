@@ -1,8 +1,9 @@
-package net.lakkie.rubstest;
+package net.lakkie.rubstest.tests;
 
 import java.util.Date;
 
 import net.lakkie.rubs.util.RUBSLogger;
+import net.lakkie.rubstest.RUBSModuleTest;
 
 public class LoggingTest extends RUBSModuleTest {
 

@@ -30,4 +30,9 @@ public abstract class AIModifier {
 		return null;
 	}
 	
+	static {
+		// Init modifiers
+		new WeatherModifier();
+	}
+	
 }

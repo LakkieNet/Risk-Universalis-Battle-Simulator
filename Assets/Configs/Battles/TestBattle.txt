@@ -1,0 +1,13 @@
+battle = {
+
+	name = "Battle of Testings"
+	
+	comment = {
+		"This is a test battle"
+		""
+		"This is just an example."
+	}
+	
+	
+
+}

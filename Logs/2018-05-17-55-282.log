@@ -1,0 +1,8 @@
+(14-02-55 INFO): Creating log on net.lakkie.rubs: 2018-05-17-55-282
+(14-02-55 INFO): Battle test: [name=null,comment=null,attacking=[units=[[pos=[x=20,y=20],infantry=1000,cavalry=0,armor=0], [pos=[x=20,y=60],infantry=1000,cavalry=0,armor=0]]],defending=[units=[[pos=[x=20,y=20],infantry=1000,cavalry=0,armor=0], [pos=[x=20,y=60],infantry=1000,cavalry=0,armor=0]]]]
+(14-02-55 INFO): Printing units' morales:
+(14-02-55 INFO): 	Unit [pos=[x=20,y=20],infantry=1000,cavalry=0,armor=0] has morale rate of 8.75
+(14-02-55 INFO): 	Unit [pos=[x=20,y=60],infantry=1000,cavalry=0,armor=0] has morale rate of 8.75
+(14-02-55 INFO): 	Unit [pos=[x=20,y=20],infantry=1000,cavalry=0,armor=0] has morale rate of 8.75
+(14-02-55 INFO): 	Unit [pos=[x=20,y=60],infantry=1000,cavalry=0,armor=0] has morale rate of 8.75
+(14-02-55 INFO): Finish morale

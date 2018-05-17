@@ -82,8 +82,13 @@ public class RUBSBattleAI {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends Object> T getComponent(String name) {
-		return (T) this.components.get(name);
+	public <T extends Object> T getComponent(Class<T> type) {
+		for (AIBattleComponent comp : this.components.values()) {
+			if (comp.getClass() == type) {
+				return (T) comp;
+			}
+		}
+		return null;
 	}
 
 }

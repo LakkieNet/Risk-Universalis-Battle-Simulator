@@ -66,4 +66,8 @@ public class UnitGroup implements Serializable {
 		return result;
 	}
 	
+	public String toString() {
+		return String.format("[units=%s]", this.units);
+	}
+	
 }

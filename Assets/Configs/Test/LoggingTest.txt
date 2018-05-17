@@ -1,6 +1,6 @@
 test_case = {
 
-	classpath = "net.lakkie.rubstest.LoggingTest"
+	classpath = "net.lakkie.rubstest.tests.LoggingTest"
 	
 	arguments = { }
 

@@ -96,5 +96,9 @@ public class RUBSBattle implements Serializable {
 		result.comment = this.comment;
 		return result;
 	}
+	
+	public String toString() {
+		return String.format("[name=%s,comment=%s,attacking=%s,defending=%s]", this.name, this.comment, this.attacking, this.defending);
+	}
 
 }
