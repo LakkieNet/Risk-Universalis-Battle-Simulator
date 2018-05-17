@@ -1,0 +1,6 @@
+(22-10-40 INFO): Creating log on net.lakkie.rubs: 2018-05-16-40-258
+(22-10-40 INFO): Beginning log test...
+(22-10-40 WARNING): This is a warning message
+(22-10-40 INFO): This is an information message
+(22-10-40 SEVERE): This is a severe message
+(22-10-40 INFO): Finish log at 22-10-40
