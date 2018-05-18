@@ -11,19 +11,17 @@ import net.lakkie.rubstest.reader.TestReader;
 
 public class TestStarter {
 
+	public static final TestReader runner = new TestReader("Assets/Configs/Test/TestRunner.txt");
+	
 	private TestStarter() {
 	}
 
-	public static void performConfigTests() {
-		TestReader runner = new TestReader("Assets/Configs/Test/TestRunner.txt");
+	public static void performConfigTests() throws Exception {
 		Map<String, TestCaseReader> tests = readTestConfigs();
 		for (String testID : runner.getTests()) {
-			try {
-				TestCaseReader testCase = tests.get(testID);
-				testCase.getTestModule().run(testCase.getArguments());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			TestCaseReader testCase = tests.get(testID);
+			System.out.println("Start " + testID + " test:");
+			testCase.getTestModule().run(testCase.getArguments());
 		}
 	}
 

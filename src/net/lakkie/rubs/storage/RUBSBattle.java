@@ -98,7 +98,7 @@ public class RUBSBattle implements Serializable {
 	}
 	
 	public String toString() {
-		return String.format("[name=%s,comment=%s,attacking=%s,defending=%s]", this.name, this.comment, this.attacking, this.defending);
+		return String.format("[name=%s,comment=%s,attacking=%s,defending=%s]", this.name, this.comment == null ? null : this.comment.replaceAll(System.lineSeparator(), "\\\\n"), this.attacking, this.defending);
 	}
 
 }

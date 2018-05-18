@@ -7,7 +7,17 @@ battle = {
 		""
 		"This is just an example."
 	}
-	
-	
 
+	# Order is X, Y, Infantry amount, Cavalry amount, Armor amount
+
+	defending_army = {
+		unit = { 20 20 1000 0 0 }
+		unit = { 20 60 1000 0 0 }
+	}
+	
+	attacking_army = {
+		unit = { 20 20 1000 0 0 }
+		unit = { 20 60 1000 0 0 }
+	}
+	
 }

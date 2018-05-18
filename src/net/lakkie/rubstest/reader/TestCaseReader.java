@@ -4,11 +4,11 @@ import java.util.List;
 
 import net.lakkie.acl.parser.ACLParser.ACLParserMachine;
 import net.lakkie.rubs.readers.ConfigurationReader;
-import net.lakkie.rubstest.RUBSModuleTest;
+import net.lakkie.rubstest.RUBSModuleTester;
 
 public class TestCaseReader extends ConfigurationReader {
 
-	private RUBSModuleTest testModule;
+	private RUBSModuleTester testModule;
 	private String[] args;
 
 	public TestCaseReader(String path) {
@@ -38,14 +38,14 @@ public class TestCaseReader extends ConfigurationReader {
 		Class<?> clazz = Class.forName(classpath);
 		// Initialize without constructor arguments
 		Object obj = clazz.getConstructor().newInstance();
-		this.testModule = (RUBSModuleTest) obj;
+		this.testModule = (RUBSModuleTester) obj;
 	}
 
 	public String[] getArguments() {
 		return this.args;
 	}
 
-	public RUBSModuleTest getTestModule() {
+	public RUBSModuleTester getTestModule() {
 		return this.testModule;
 	}
 

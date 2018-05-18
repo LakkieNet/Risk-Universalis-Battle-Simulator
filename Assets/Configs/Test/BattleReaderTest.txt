@@ -1,0 +1,9 @@
+test_case = {
+
+	classpath = "net.lakkie.rubstest.tests.BattleReaderTest"
+	
+	arguments = {
+		"Assets/Configs/Battles/TestBattle.txt"
+	}
+
+}

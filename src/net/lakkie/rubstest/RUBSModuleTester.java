@@ -1,10 +1,10 @@
 package net.lakkie.rubstest;
 
-public abstract class RUBSModuleTest {
+public abstract class RUBSModuleTester {
 
 	private String testID;
 
-	public RUBSModuleTest(String testID) {
+	public RUBSModuleTester(String testID) {
 		this.testID = testID;
 	}
 	

@@ -6,15 +6,16 @@ import net.lakkie.rubs.storage.ExampleUnitGroup;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.RUBSBattle;
 import net.lakkie.rubs.util.RUBSLogger;
-import net.lakkie.rubstest.RUBSModuleTest;
+import net.lakkie.rubstest.RUBSModuleTester;
 
-public class MoraleTest extends RUBSModuleTest {
+public class MoraleTest extends RUBSModuleTester {
 
 	public MoraleTest() {
 		super("morale");
 	}
 
 	public void run(String[] args) throws Exception {
+		RUBSLogger.logger().info("Beginning morale test...");
 		RUBSBattle exampleBattle = new RUBSBattle(new ExampleUnitGroup(), new ExampleUnitGroup());
 		RUBSBattleAI ai = new RUBSBattleAI(exampleBattle);
 		RUBSLogger.logger().info("Battle test: " + exampleBattle);

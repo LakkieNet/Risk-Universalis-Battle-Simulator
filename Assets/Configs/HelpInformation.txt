@@ -1,0 +1,11 @@
+Risk Universalis Battle Simulator tries to simulate battles for the game Risk Universalis.
+These can all have 1 or 2 dashes, and can be shortened with specified aliases.
+This is the command line help information:
+
+	-h, --help			Show this help information
+	
+	-v, --version		Show the version information
+	
+	-t, --test			Runs the program as a test
+
+	-nl, --nolog		Disables the creation of *.log files

@@ -1,0 +1,47 @@
+alias = {
+
+	arg = "--help"
+	
+	aliases = {
+		"-help"
+		"-h"
+		"--h"
+	}
+
+}
+
+alias = {
+
+	arg = "--version"
+	
+	aliases = {
+		"-version"
+		"-v"
+		"--v"
+	}
+
+}
+
+alias = {
+
+	arg = "--test"
+	
+	aliases = {
+		"-test"
+		"-t"
+		"--t"
+	}
+
+}
+
+alias = {
+
+	arg = "--nolog"
+	
+	aliases = {
+		"-nolog"
+		"-nl"
+		"--nl"
+	}
+
+}
