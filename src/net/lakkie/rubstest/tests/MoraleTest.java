@@ -17,6 +17,7 @@ public class MoraleTest extends RUBSModuleTester {
 	public void run(String[] args) throws Exception {
 		RUBSLogger.logger().info("Beginning morale test...");
 		RUBSBattle exampleBattle = new RUBSBattle(new ExampleUnitGroup(), new ExampleUnitGroup());
+		exampleBattle.getAttacking().getUnits().remove(0);
 		RUBSBattleAI ai = new RUBSBattleAI(exampleBattle);
 		RUBSLogger.logger().info("Battle test: " + exampleBattle);
 		RUBSLogger.logger().info("Printing units' morales:");

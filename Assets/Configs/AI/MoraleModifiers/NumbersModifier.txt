@@ -1,0 +1,15 @@
+modifier_db = {
+
+	id = "numbers"
+
+	# This is how it is seen, not totally real. Remember this is human judgement.
+
+	db_infantry_weight = 1.0
+	
+	db_cavalry_weight = 1.2
+	
+	db_armor_weight = 1.3
+	
+	db_multiplier = 20
+	
+}

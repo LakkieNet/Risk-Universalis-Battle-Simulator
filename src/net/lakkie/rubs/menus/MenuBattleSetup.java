@@ -56,9 +56,9 @@ public class MenuBattleSetup extends JFrame {
 	private DivisionPreviewRenderer prevA, prevD;
 	private JCheckBox chckbxKeepPosition;
 	private JCheckBoxMenuItem chckbxDebugLines;
-	public UnitGroup armyA = new ExampleUnitGroup(),
-			armyD = new ExampleUnitGroup();
+	public UnitGroup armyA = new ExampleUnitGroup(), armyD = new ExampleUnitGroup();
 	private MenuArmyEditor editorA, editorD;
+	public JTextArea textAreaComment;
 
 	public MenuBattleSetup() {
 		this.setTitle("Battle Setup");
@@ -87,10 +87,8 @@ public class MenuBattleSetup extends JFrame {
 		this.contentPane.setLayout(null);
 
 		JPanel panelMeta = new JPanel();
-		panelMeta.setBorder(new TitledBorder(
-				new BevelBorder(BevelBorder.RAISED, null, null, null, null),
-				"Meta Information", TitledBorder.TRAILING, TitledBorder.TOP,
-				null, new Color(0, 0, 0)));
+		panelMeta.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Meta Information", TitledBorder.TRAILING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelMeta.setBounds(20, 11, 836, 152);
 		this.contentPane.add(panelMeta);
 		panelMeta.setLayout(null);
@@ -122,7 +120,7 @@ public class MenuBattleSetup extends JFrame {
 		scrollPane.setBounds(73, 50, 753, 91);
 		panelMeta.add(scrollPane);
 
-		JTextArea textAreaComment = new JTextArea();
+		textAreaComment = new JTextArea();
 		textAreaComment.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		scrollPane.setViewportView(textAreaComment);
 
@@ -130,8 +128,7 @@ public class MenuBattleSetup extends JFrame {
 			RUBSBattle battle = new RUBSBattle(this.armyA, this.armyD);
 			battle.setName(this.textFieldEvalName.getText());
 			battle.setComment(textAreaComment.getText());
-			JFileChooser chooser = new JFileChooser(
-					new File(ReaderUtils.getRoot(), "Assets/"));
+			JFileChooser chooser = new JFileChooser(new File(ReaderUtils.getRoot(), "SaveFiles/"));
 			chooser.setFileFilter(new FileFilter() {
 
 				public String getDescription() {
@@ -149,12 +146,10 @@ public class MenuBattleSetup extends JFrame {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File targetFile = chooser.getSelectedFile();
 				if (!targetFile.getName().endsWith("rudf")) {
-					targetFile = new File(
-							targetFile.getAbsolutePath() + ".rudf");
+					targetFile = new File(targetFile.getAbsolutePath() + ".rudf");
 				}
 				try {
-					ObjectOutputStream out = new ObjectOutputStream(
-							new FileOutputStream(targetFile));
+					ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(targetFile));
 					out.writeObject(battle);
 					out.flush();
 					out.close();
@@ -165,12 +160,8 @@ public class MenuBattleSetup extends JFrame {
 		});
 
 		JPanel panel = new JPanel();
-		panel.setBorder(
-				new TitledBorder(
-						new BevelBorder(BevelBorder.RAISED, null, null, null,
-								null),
-						"Defending Army", TitledBorder.TRAILING,
-						TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Defending Army", TitledBorder.TRAILING, TitledBorder.TOP,
+				null, new Color(0, 0, 0)));
 		panel.setBounds(20, 174, 327, 327);
 		this.contentPane.add(panel);
 		panel.setLayout(null);
@@ -233,12 +224,8 @@ public class MenuBattleSetup extends JFrame {
 		panel.add(this.canvasD);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(
-				new TitledBorder(
-						new BevelBorder(BevelBorder.RAISED, null, null, null,
-								null),
-						"Attacking Army", TitledBorder.TRAILING,
-						TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), "Attacking Army", TitledBorder.TRAILING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(395, 174, 327, 327);
 		this.contentPane.add(panel_1);
 		panel_1.setLayout(null);
@@ -317,8 +304,7 @@ public class MenuBattleSetup extends JFrame {
 			}
 
 			public void keyReleased(KeyEvent e) {
-				textFieldEvalName.setText(NamingUtils
-						.getBattleName(textFieldName.getText()));
+				textFieldEvalName.setText(NamingUtils.getBattleName(textFieldName.getText()));
 			}
 
 			public void keyPressed(KeyEvent e) {
@@ -329,11 +315,9 @@ public class MenuBattleSetup extends JFrame {
 		this.chckbxKeepPosition = new JCheckBox("Keep Position");
 		this.chckbxKeepPosition.setBounds(20, 504, 97, 23);
 		this.contentPane.add(this.chckbxKeepPosition);
-		this.prevA = new DivisionPreviewRenderer(this.canvasA, this.armyA,
-				new AbstractButtonCallback(this.chckbxKeepPosition),
+		this.prevA = new DivisionPreviewRenderer(this.canvasA, this.armyA, new AbstractButtonCallback(this.chckbxKeepPosition),
 				new AbstractButtonCallback(this.chckbxDebugLines));
-		this.prevD = new DivisionPreviewRenderer(this.canvasD, this.armyD,
-				new AbstractButtonCallback(this.chckbxKeepPosition),
+		this.prevD = new DivisionPreviewRenderer(this.canvasD, this.armyD, new AbstractButtonCallback(this.chckbxKeepPosition),
 				new AbstractButtonCallback(this.chckbxDebugLines));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -344,22 +328,14 @@ public class MenuBattleSetup extends JFrame {
 	}
 
 	public void updateTroopInfo() {
-		this.textFieldSizeA
-				.setText(BasicUtils.formatCommas(this.armyA.getTotalTroops()));
-		this.textFieldInfantryA.setText(
-				BasicUtils.formatCommas(this.armyA.getTotalInfantry()));
-		this.textFieldCavalryA
-				.setText(BasicUtils.formatCommas(this.armyA.getTotalCavalry()));
-		this.textFieldArmorA
-				.setText(BasicUtils.formatCommas(this.armyA.getTotalArmor()));
-		this.textFieldSizeD
-				.setText(BasicUtils.formatCommas(this.armyD.getTotalTroops()));
-		this.textFieldInfantryD.setText(
-				BasicUtils.formatCommas(this.armyD.getTotalInfantry()));
-		this.textFieldCavalryD
-				.setText(BasicUtils.formatCommas(this.armyD.getTotalCavalry()));
-		this.textFieldArmorD
-				.setText(BasicUtils.formatCommas(this.armyD.getTotalArmor()));
+		this.textFieldSizeA.setText(BasicUtils.formatCommas(this.armyA.getTotalTroops()));
+		this.textFieldInfantryA.setText(BasicUtils.formatCommas(this.armyA.getTotalInfantry()));
+		this.textFieldCavalryA.setText(BasicUtils.formatCommas(this.armyA.getTotalCavalry()));
+		this.textFieldArmorA.setText(BasicUtils.formatCommas(this.armyA.getTotalArmor()));
+		this.textFieldSizeD.setText(BasicUtils.formatCommas(this.armyD.getTotalTroops()));
+		this.textFieldInfantryD.setText(BasicUtils.formatCommas(this.armyD.getTotalInfantry()));
+		this.textFieldCavalryD.setText(BasicUtils.formatCommas(this.armyD.getTotalCavalry()));
+		this.textFieldArmorD.setText(BasicUtils.formatCommas(this.armyD.getTotalArmor()));
 	}
 
 	private void drawArmyPreviews() {

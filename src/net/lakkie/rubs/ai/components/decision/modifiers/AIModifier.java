@@ -33,6 +33,7 @@ public abstract class AIModifier {
 	static {
 		// Init modifiers
 		new WeatherModifier();
+		new NumbersModifier();
 	}
 	
 }

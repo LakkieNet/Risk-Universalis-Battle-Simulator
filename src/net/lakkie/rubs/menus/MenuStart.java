@@ -33,8 +33,7 @@ public class MenuStart extends JFrame {
 		this.setContentPane(this.contentPane);
 		this.contentPane.setLayout(null);
 
-		JLabel lblRiskUniversalisBattle = new JLabel(
-				"Risk Universalis Battle Simulator");
+		JLabel lblRiskUniversalisBattle = new JLabel("Risk Universalis Battle Simulator");
 		lblRiskUniversalisBattle.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblRiskUniversalisBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRiskUniversalisBattle.setBounds(59, 84, 350, 32);
@@ -53,8 +52,7 @@ public class MenuStart extends JFrame {
 		buttonOpenTemplate.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		buttonOpenTemplate.setBounds(164, 193, 150, 55);
 		buttonOpenTemplate.addActionListener((event) -> {
-			JFileChooser chooser = new JFileChooser(
-					new File(ReaderUtils.getRoot(), "Assets/"));
+			JFileChooser chooser = new JFileChooser(new File(ReaderUtils.getRoot(), "SaveFiles/"));
 			chooser.setFileFilter(new FileFilter() {
 
 				public String getDescription() {
@@ -78,11 +76,10 @@ public class MenuStart extends JFrame {
 					setup.armyD = battle.getDefending();
 					setup.textFieldName.setText(NamingUtils.getRootBattleName(battle.getName()));
 					setup.textFieldEvalName.setText(battle.getName());
+					setup.textAreaComment.setText(battle.getComment());
 					setup.updateTroopInfo();
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null,
-							"Error reading the file: " + e.getMessage(),
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error reading the file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}

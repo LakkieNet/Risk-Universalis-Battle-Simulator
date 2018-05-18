@@ -1,5 +1,6 @@
 modifiers = {
 
 	modifier = "Assets/Configs/AI/MoraleModifiers/WeatherModifier.txt"
+	modifier = "Assets/Configs/AI/MoraleModifiers/NumbersModifier.txt"
 
 }

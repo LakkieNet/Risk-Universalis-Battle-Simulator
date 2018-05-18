@@ -12,6 +12,7 @@ import net.lakkie.rubs.ai.components.decision.AIDecisionOperator;
 import net.lakkie.rubs.ai.components.pathfinder.AIPathfinder;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.RUBSBattle;
+import net.lakkie.rubs.storage.UnitActionType;
 import net.lakkie.rubs.storage.Vector2i;
 
 public class RUBSBattleAI {
@@ -57,6 +58,12 @@ public class RUBSBattleAI {
 
 	public void init() {
 		this.lastChange = System.currentTimeMillis();
+		for (PositionedUnit unit : this.battle.getAttacking().getUnits()) {
+			unit.actionType = UnitActionType.ATTACKING;
+		}
+		for (PositionedUnit unit : this.battle.getDefending().getUnits()) {
+			unit.actionType = UnitActionType.DEFENDING;
+		}
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			unit.ai = this;
 			for (AIBattleComponent comp : this.components.values()) {
