@@ -5,11 +5,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
@@ -28,17 +32,19 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 
-import net.lakkie.rubs.BasicUtils;
 import net.lakkie.rubs.NamingUtils;
 import net.lakkie.rubs.graphics.DivisionPreviewRenderer;
 import net.lakkie.rubs.graphics.GraphicalGameLoop;
-import net.lakkie.rubs.readers.ReaderUtils;
 import net.lakkie.rubs.storage.ExampleUnitGroup;
 import net.lakkie.rubs.storage.RUBSBattle;
 import net.lakkie.rubs.storage.UnitGroup;
 import net.lakkie.rubs.util.AbstractButtonCallback;
+import net.lakkie.rubs.util.BasicUtils;
+import net.lakkie.rubs.util.CipherUtils;
+import net.lakkie.rubs.util.RUBSLogger;
+import net.lakkie.rubs.util.ReaderUtils;
 
-public class MenuBattleSetup extends JFrame {
+public class MenuBattleSetup extends JFrame implements WindowListener {
 
 	private static final long serialVersionUID = -7126096430468006088L;
 	private JPanel contentPane;
@@ -58,11 +64,13 @@ public class MenuBattleSetup extends JFrame {
 	private JCheckBoxMenuItem chckbxDebugLines;
 	public UnitGroup armyA = new ExampleUnitGroup(), armyD = new ExampleUnitGroup();
 	private MenuArmyEditor editorA, editorD;
+	private Runnable armyPreviewFunction;
 	public JTextArea textAreaComment;
 
 	public MenuBattleSetup() {
 		this.setTitle("Battle Setup");
 		this.setBounds(100, 100, 882, 579);
+		this.armyPreviewFunction = this::drawArmyPreviews;
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -149,11 +157,15 @@ public class MenuBattleSetup extends JFrame {
 					targetFile = new File(targetFile.getAbsolutePath() + ".rudf");
 				}
 				try {
-					ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(targetFile));
+					ObjectOutputStream out = new ObjectOutputStream(
+							new CipherOutputStream(new FileOutputStream(targetFile), CipherUtils.getCipher(Cipher.ENCRYPT_MODE)));
 					out.writeObject(battle);
 					out.flush();
 					out.close();
+					RUBSLogger.logger().info("Successfully saved to: " + targetFile.getAbsolutePath());
+					RUBSLogger.logger().info("Army is: " + battle);
 				} catch (IOException e1) {
+					RUBSLogger.logger().warning("Error saving to: " + targetFile.getAbsolutePath());
 					e1.printStackTrace();
 				}
 			}
@@ -293,6 +305,7 @@ public class MenuBattleSetup extends JFrame {
 			battle.setName(this.textFieldEvalName.getText());
 			battle.setComment(textAreaComment.getText());
 
+			GraphicalGameLoop.getInstance().getDraws().remove(this.armyPreviewFunction);
 			new MenuBattleSim(battle.copy());
 		});
 		btnCreate.setBounds(754, 470, 112, 48);
@@ -315,15 +328,13 @@ public class MenuBattleSetup extends JFrame {
 		this.chckbxKeepPosition = new JCheckBox("Keep Position");
 		this.chckbxKeepPosition.setBounds(20, 504, 97, 23);
 		this.contentPane.add(this.chckbxKeepPosition);
-		this.prevA = new DivisionPreviewRenderer(this.canvasA, this.armyA, new AbstractButtonCallback(this.chckbxKeepPosition),
-				new AbstractButtonCallback(this.chckbxDebugLines));
-		this.prevD = new DivisionPreviewRenderer(this.canvasD, this.armyD, new AbstractButtonCallback(this.chckbxKeepPosition),
-				new AbstractButtonCallback(this.chckbxDebugLines));
+		this.addWindowListener(this);
+		this.createPreviews();
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
 
-		GraphicalGameLoop.getInstance().getDraws().add(this::drawArmyPreviews);
+		GraphicalGameLoop.getInstance().getDraws().add(this.armyPreviewFunction);
 		this.updateTroopInfo();
 	}
 
@@ -338,8 +349,43 @@ public class MenuBattleSetup extends JFrame {
 		this.textFieldArmorD.setText(BasicUtils.formatCommas(this.armyD.getTotalArmor()));
 	}
 
+	public void createPreviews() {
+		this.prevA = new DivisionPreviewRenderer(this.canvasA, this.armyA, new AbstractButtonCallback(this.chckbxKeepPosition),
+				new AbstractButtonCallback(this.chckbxDebugLines));
+		this.prevD = new DivisionPreviewRenderer(this.canvasD, this.armyD, new AbstractButtonCallback(this.chckbxKeepPosition),
+				new AbstractButtonCallback(this.chckbxDebugLines));
+	}
+	
 	private void drawArmyPreviews() {
 		this.prevA.draw();
 		this.prevD.draw();
+	}
+
+	public void windowOpened(WindowEvent e) {
+		
+	}
+
+	public void windowClosing(WindowEvent e) {
+		GraphicalGameLoop.getInstance().getDraws().remove(this.armyPreviewFunction);
+	}
+
+	public void windowClosed(WindowEvent e) {
+		
+	}
+
+	public void windowIconified(WindowEvent e) {
+		
+	}
+
+	public void windowDeiconified(WindowEvent e) {
+		
+	}
+
+	public void windowActivated(WindowEvent e) {
+		
+	}
+
+	public void windowDeactivated(WindowEvent e) {
+		
 	}
 }

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import net.lakkie.acl.parser.ACLParser;
 import net.lakkie.acl.parser.IACLReader;
+import net.lakkie.rubs.util.ReaderUtils;
 
 public abstract class ConfigurationReader implements IACLReader {
 

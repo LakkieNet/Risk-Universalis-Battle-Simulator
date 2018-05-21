@@ -17,4 +17,7 @@ public abstract class AIBattleComponent {
 
 	public abstract void tickUnit(PositionedUnit unit);
 
+	public void postInitUnit(PositionedUnit unit) {
+	}
+
 }

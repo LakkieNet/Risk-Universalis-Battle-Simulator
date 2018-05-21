@@ -1,3 +1,4 @@
 Tasks:
- - Create battle debug window
- - Create morale script system
+ - Add some more modifiers
+   - 
+ - Finish decision operations

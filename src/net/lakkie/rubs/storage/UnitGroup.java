@@ -11,7 +11,7 @@ public class UnitGroup implements Serializable {
 
 	private static final long serialVersionUID = 9071012123543856152L;
 	private final List<PositionedUnit> units = new ArrayList<PositionedUnit>();
-	public transient AIArmyOrder order;
+	public transient AIArmyOrder order = AIArmyOrder.STALEMATE;
 	public transient RUBSBattleAI ai;
 	
 	public void addUnit(PositionedUnit unit) {

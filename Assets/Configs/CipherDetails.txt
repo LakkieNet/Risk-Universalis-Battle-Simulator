@@ -1,0 +1,8 @@
+cipher = {
+
+	mode = "AES"
+	
+	# Must be 32 characters
+	cipher_pattern = "8GyA6nBXNVjiweaVL22su8TpuBw1bBMN"
+
+}

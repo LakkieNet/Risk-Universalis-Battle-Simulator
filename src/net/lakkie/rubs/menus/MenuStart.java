@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -16,8 +18,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 
 import net.lakkie.rubs.NamingUtils;
-import net.lakkie.rubs.readers.ReaderUtils;
 import net.lakkie.rubs.storage.RUBSBattle;
+import net.lakkie.rubs.util.BasicUtils;
+import net.lakkie.rubs.util.CipherUtils;
+import net.lakkie.rubs.util.RUBSLogger;
+import net.lakkie.rubs.util.ReaderUtils;
 
 public class MenuStart extends JFrame {
 
@@ -74,11 +79,15 @@ public class MenuStart extends JFrame {
 					MenuBattleSetup setup = new MenuBattleSetup();
 					setup.armyA = battle.getAttacking();
 					setup.armyD = battle.getDefending();
+					setup.createPreviews();
 					setup.textFieldName.setText(NamingUtils.getRootBattleName(battle.getName()));
 					setup.textFieldEvalName.setText(battle.getName());
 					setup.textAreaComment.setText(battle.getComment());
 					setup.updateTroopInfo();
+					RUBSLogger.logger().info("Successfully loaded save: " + selection.getAbsolutePath());
+					RUBSLogger.logger().info("Army is:\n" + BasicUtils.formatStringObject(battle));
 				} catch (Exception e) {
+					RUBSLogger.logger().warning("Error loading save: " + selection.getAbsolutePath());
 					JOptionPane.showMessageDialog(null, "Error reading the file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -91,7 +100,7 @@ public class MenuStart extends JFrame {
 	}
 
 	private RUBSBattle readFile(File selection) throws Exception {
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream(selection));
+		ObjectInputStream in = new ObjectInputStream(new CipherInputStream(new FileInputStream(selection), CipherUtils.getCipher(Cipher.DECRYPT_MODE)));
 		RUBSBattle battle = (RUBSBattle) in.readObject();
 		in.close();
 		return battle;

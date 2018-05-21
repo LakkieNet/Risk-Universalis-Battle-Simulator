@@ -1,5 +1,6 @@
-package net.lakkie.rubs.ai.components.decision.modifiers;
+package net.lakkie.rubs.ai.components.decision.modifiers.impl;
 
+import net.lakkie.rubs.ai.components.decision.modifiers.AIModifier;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.RUBSBattle;
 

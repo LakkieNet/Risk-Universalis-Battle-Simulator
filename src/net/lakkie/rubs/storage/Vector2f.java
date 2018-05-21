@@ -45,7 +45,7 @@ public class Vector2f {
 	}
 
 	public Vector2i round() {
-		return new Vector2i((int) this.x, (int) this.y);
+		return new Vector2i(Math.round(this.x), Math.round(this.y));
 	}
 
 }

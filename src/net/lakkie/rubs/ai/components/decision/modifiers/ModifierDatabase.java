@@ -38,5 +38,9 @@ public class ModifierDatabase extends ConfigurationReader {
 	public String getId() {
 		return this.id;
 	}
+	
+	public String toString() {
+		return String.format("[id=%s,values=%s]", this.id, this.values);
+	}
 
 }

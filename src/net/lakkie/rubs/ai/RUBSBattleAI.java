@@ -20,7 +20,7 @@ public class RUBSBattleAI {
 	public static final String ID_PATHFINDER = "pathfinder";
 	public static final String ID_DAMAGE = "damageoperator";
 	public static final String ID_DECISION = "decision";
-	
+
 	public RUBSBattle battle;
 	public Map<String, AIBattleComponent> components = new HashMap<String, AIBattleComponent>();
 	private long lastChange;
@@ -30,9 +30,18 @@ public class RUBSBattleAI {
 		this.battle.ai = this;
 		this.battle.getAttacking().ai = this;
 		this.battle.getDefending().ai = this;
+		// Setting the "originalTotal" field for test case purposes
+		for (PositionedUnit unit : this.battle.getAttacking().getUnits()) {
+			unit.actionType = UnitActionType.ATTACKING;
+			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
+		}
+		for (PositionedUnit unit : this.battle.getDefending().getUnits()) {
+			unit.actionType = UnitActionType.DEFENDING;
+			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
+		}
+		this.components.put(ID_DECISION, new AIDecisionOperator(this));
 		this.components.put(ID_PATHFINDER, new AIPathfinder(this));
 		this.components.put(ID_DAMAGE, new AIDamageOperator(this));
-		this.components.put(ID_DECISION, new AIDecisionOperator(this));
 	}
 
 	public void slowTick() {
@@ -58,16 +67,16 @@ public class RUBSBattleAI {
 
 	public void init() {
 		this.lastChange = System.currentTimeMillis();
-		for (PositionedUnit unit : this.battle.getAttacking().getUnits()) {
-			unit.actionType = UnitActionType.ATTACKING;
-		}
-		for (PositionedUnit unit : this.battle.getDefending().getUnits()) {
-			unit.actionType = UnitActionType.DEFENDING;
-		}
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			unit.ai = this;
+			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
 			for (AIBattleComponent comp : this.components.values()) {
 				comp.initUnit(unit);
+			}
+		}
+		for (PositionedUnit unit : this.battle.getAllUnits()) {
+			for (AIBattleComponent comp : this.components.values()) {
+				comp.postInitUnit(unit);
 			}
 		}
 	}
@@ -87,7 +96,7 @@ public class RUBSBattleAI {
 		g.drawLine(offset.x + unit.pos.x + unit.getRenderWidth() / 2, offset.y + unit.pos.y + unit.getRenderWidth() / 2 - 3, offset.x + unit.aiTargetPos.x,
 				offset.y + unit.aiTargetPos.y);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public <T extends Object> T getComponent(Class<T> type) {
 		for (AIBattleComponent comp : this.components.values()) {

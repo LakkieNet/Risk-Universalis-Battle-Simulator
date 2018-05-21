@@ -5,20 +5,23 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
-import net.lakkie.rubs.BasicUtils;
+import net.lakkie.rubs.ai.AIArmyDecision;
 import net.lakkie.rubs.ai.RUBSBattleAI;
 import net.lakkie.rubs.ai.components.decision.AIDecisionOperator;
 import net.lakkie.rubs.readers.UnitCoordinator;
+import net.lakkie.rubs.util.BasicUtils;
 
 public class PositionedUnit implements Serializable {
 
 	private static final long serialVersionUID = -4009259352660549560L;
 	public Vector2i pos;
 	public int infantry = 1000, cavalry = 0, armor = 0;
-	public transient UnitActionType actionType;
+	public UnitActionType actionType = UnitActionType.GENERIC;
 	public transient RUBSBattleAI ai;
 	public transient Vector2i aiTargetPos;
 	public transient Vector2f posExact;
+	public transient int originalTotal;
+	public transient AIArmyDecision decision;
 
 	public PositionedUnit(Vector2i pos, UnitActionType actionType) {
 		this.pos = pos;
@@ -64,7 +67,9 @@ public class PositionedUnit implements Serializable {
 				BasicUtils.formatCommas(this.armor));
 		g.setColor(Color.black);
 		g.setFont(BasicUtils.getUnitInfoFont());
-		g.drawString(numbers, this.pos.x + offset.x, this.pos.y + offset.y - 3);
+		int posX = this.pos.x + offset.x;
+		int posY = this.pos.y + offset.y - 3;
+		g.drawString(numbers, posX, posY);
 	}
 
 	public int getSize() {
@@ -91,6 +96,14 @@ public class PositionedUnit implements Serializable {
 		return this.ai == null ? 0f : this.ai.getComponent(AIDecisionOperator.class).calculateMorale(this);
 	}
 
+	public UnitGroup getArmy(RUBSBattle in) {
+		return this.inArmy(in.getAttacking()) ? in.getAttacking() : in.getDefending();
+	}
+	
+	public boolean inArmy(UnitGroup army) {
+		return army.getUnits().contains(this);
+	}
+	
 	public String toString() {
 		return String.format("[pos=%s,infantry=%s,cavalry=%s,armor=%s]", this.pos, this.infantry, this.cavalry, this.armor);
 	}

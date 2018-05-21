@@ -19,11 +19,11 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import net.lakkie.rubs.BasicUtils;
 import net.lakkie.rubs.graphics.BattleRenderer;
 import net.lakkie.rubs.storage.RUBSBattle;
 import net.lakkie.rubs.storage.Vector2i;
 import net.lakkie.rubs.util.AbstractButtonCallback;
+import net.lakkie.rubs.util.BasicUtils;
 
 public class MenuBattleSim extends JFrame implements WindowListener {
 

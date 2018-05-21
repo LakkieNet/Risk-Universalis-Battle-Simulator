@@ -6,7 +6,7 @@ import java.util.Scanner;
 import net.lakkie.rubs.args.readers.RUBSAliasConfigReader;
 import net.lakkie.rubs.args.readers.RUBSAliasReader;
 import net.lakkie.rubs.readers.AppVersionReader;
-import net.lakkie.rubs.readers.ReaderUtils;
+import net.lakkie.rubs.util.ReaderUtils;
 import net.lakkie.rubstest.TestStarter;
 
 public class RUBSArgumentParser {

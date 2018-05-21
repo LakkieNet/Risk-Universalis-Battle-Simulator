@@ -4,7 +4,7 @@ import net.lakkie.rubs.NamingUtils;
 
 public enum BattleWeatherType {
 
-	STORM(-4f), SNOW(-2f), RAIN(-1f), CLOUDY(-0.5f), CLEAR(0.5f), SUNNY(1f);
+	STORM(-1.5f), SNOW(-0.25f), RAIN(-1f), CLOUDY(-0.5f), CLEAR(0.5f), SUNNY(1f);
 	
 	private final float moraleScalar;
 	

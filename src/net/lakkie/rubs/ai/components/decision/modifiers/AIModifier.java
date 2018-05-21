@@ -3,6 +3,9 @@ package net.lakkie.rubs.ai.components.decision.modifiers;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.lakkie.rubs.ai.components.decision.modifiers.impl.CasualtyModifier;
+import net.lakkie.rubs.ai.components.decision.modifiers.impl.NumbersModifier;
+import net.lakkie.rubs.ai.components.decision.modifiers.impl.WeatherModifier;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.RUBSBattle;
 
@@ -34,6 +37,7 @@ public abstract class AIModifier {
 		// Init modifiers
 		new WeatherModifier();
 		new NumbersModifier();
+		new CasualtyModifier();
 	}
 	
 }

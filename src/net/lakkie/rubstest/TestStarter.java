@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.lakkie.rubs.readers.ReaderUtils;
+import net.lakkie.rubs.util.ReaderUtils;
 import net.lakkie.rubstest.reader.TestCaseReader;
 import net.lakkie.rubstest.reader.TestReader;
 

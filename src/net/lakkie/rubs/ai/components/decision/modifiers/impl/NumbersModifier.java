@@ -1,10 +1,10 @@
-package net.lakkie.rubs.ai.components.decision.modifiers;
+package net.lakkie.rubs.ai.components.decision.modifiers.impl;
 
+import net.lakkie.rubs.ai.components.decision.modifiers.AIModifier;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.RUBSBattle;
 import net.lakkie.rubs.storage.UnitActionType;
 import net.lakkie.rubs.storage.UnitGroup;
-import net.lakkie.rubs.util.RUBSLogger;
 
 public class NumbersModifier extends AIModifier {
 
@@ -42,7 +42,6 @@ public class NumbersModifier extends AIModifier {
 		float selfTotal = this.getFriendlyArmy(unit, battle).getTotalInfantry() + this.getFriendlyArmy(unit, battle).getTotalCavalry()
 				+ this.getFriendlyArmy(unit, battle).getTotalArmor();
 		float result = 0f;
-		System.out.printf("Self total: %s, effective total: %s, action type; %s\n", selfTotal, effectiveTotal, unit.actionType);
 		if (selfTotal == effectiveTotal) {
 			result = -10f;
 		}
@@ -52,7 +51,6 @@ public class NumbersModifier extends AIModifier {
 		if (selfTotal > effectiveTotal) {
 			result = (selfTotal / effectiveTotal) * this.multiplier;
 		}
-		RUBSLogger.logger().info("\tMorale effect: " + result);
 		return result;
 	}
 

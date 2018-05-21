@@ -1,0 +1,7 @@
+modifier_db = {
+
+	id = "casualty"
+	
+	db_base_value = -450
+
+}

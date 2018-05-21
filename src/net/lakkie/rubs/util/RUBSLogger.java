@@ -9,7 +9,6 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 import net.lakkie.rubs.args.RUBSArgumentParser;
-import net.lakkie.rubs.readers.ReaderUtils;
 
 public class RUBSLogger extends Logger {
 

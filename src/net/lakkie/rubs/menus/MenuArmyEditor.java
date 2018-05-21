@@ -24,11 +24,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import net.lakkie.rubs.graphics.UnitGroupEditor;
-import net.lakkie.rubs.readers.ReaderUtils;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.UnitActionType;
 import net.lakkie.rubs.storage.UnitGroup;
 import net.lakkie.rubs.storage.Vector2i;
+import net.lakkie.rubs.util.ReaderUtils;
 
 public class MenuArmyEditor extends JFrame implements WindowListener {
 

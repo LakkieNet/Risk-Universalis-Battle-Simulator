@@ -26,6 +26,18 @@ public class AIStageParser implements IACLReader {
 		if (token.equals("still_factor")) {
 			this.editing.stillFactor = (float) machine.readDouble();
 		}
+		if (token.equals("distance_multiplier")) {
+			this.editing.distanceMultiplier = (float) machine.readDouble();
+		}
+		if (token.equals("speed_multiplier")) {
+			this.editing.speedMultiplier = (float) machine.readDouble();
+		}
+		if (token.equals("m_spread")) {
+			this.editing.mSpread = (float) machine.readDouble();
+		}
+		if (token.equals("b_spread")) {
+			this.editing.bSpread = (float) machine.readDouble();
+		}
 	}
 
 }

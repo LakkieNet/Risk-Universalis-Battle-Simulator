@@ -27,7 +27,7 @@ public class ModifierRegistry extends ConfigurationReader {
 			this.dbs.add(new ModifierDatabase(machine.readString()));
 		}
 	}
-	
+
 	public static ModifierDatabase getById(String id) {
 		for (ModifierDatabase db : inst.dbs) {
 			if (db.getId().equals(id)) {

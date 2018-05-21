@@ -1,0 +1,36 @@
+decision = {
+
+	# Must come first
+	id = "RETREAT"
+	
+	friendly_name = "Retreat"
+	
+	values = {
+		target_multiplier = -1.0
+	}
+
+}
+
+decision = {
+
+	id = "STILL"
+	
+	friendly_name = "Still (Stalemate)"
+	
+	values = {
+		target_multiplier = 0.15
+	}
+
+}
+
+decision = {
+
+	id = "ATTACK"
+	
+	friendly_name = "Attack"
+	
+	values = {
+		target_multiplier = 1f
+	}
+
+}

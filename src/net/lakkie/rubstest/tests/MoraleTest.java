@@ -19,6 +19,8 @@ public class MoraleTest extends RUBSModuleTester {
 		RUBSBattle exampleBattle = new RUBSBattle(new ExampleUnitGroup(), new ExampleUnitGroup());
 		exampleBattle.getAttacking().getUnits().remove(0);
 		RUBSBattleAI ai = new RUBSBattleAI(exampleBattle);
+		// After originalTotal is calculated
+		exampleBattle.getDefending().getUnits().get(0).infantry -= 806;
 		RUBSLogger.logger().info("Battle test: " + exampleBattle);
 		RUBSLogger.logger().info("Printing units' morales:");
 		for (PositionedUnit unit : exampleBattle.getAllUnits()) {

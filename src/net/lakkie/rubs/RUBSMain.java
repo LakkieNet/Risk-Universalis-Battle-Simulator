@@ -10,7 +10,6 @@ public class RUBSMain {
 	public static void main(String[] args) {
 		if (args.length != 0) {
 			RUBSArgumentParser.startAppWithArgs(args);
-			System.exit(0);
 		}
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
