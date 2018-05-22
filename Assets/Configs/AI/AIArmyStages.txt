@@ -62,8 +62,8 @@ stage = {
 
 	decision_factors = {
 		retreat_factor = 0.05
-		still_factor = 0.30
-		attack_factor = 0.65
+		still_factor = 0.15
+		attack_factor = 0.8
 	}
 	
 }

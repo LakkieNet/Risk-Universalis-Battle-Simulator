@@ -1,8 +1,8 @@
 package net.lakkie.rubs.storage;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.lakkie.rubs.ai.AIArmyOrder;
 import net.lakkie.rubs.ai.RUBSBattleAI;
@@ -10,8 +10,8 @@ import net.lakkie.rubs.ai.RUBSBattleAI;
 public class UnitGroup implements Serializable {
 
 	private static final long serialVersionUID = 9071012123543856152L;
-	private final List<PositionedUnit> units = new ArrayList<PositionedUnit>();
-	public transient AIArmyOrder order = AIArmyOrder.STALEMATE;
+	private final List<PositionedUnit> units = new CopyOnWriteArrayList<PositionedUnit>();
+	public transient AIArmyOrder order = AIArmyOrder.GENERAL_ADVANCE;
 	public transient RUBSBattleAI ai;
 	
 	public void addUnit(PositionedUnit unit) {

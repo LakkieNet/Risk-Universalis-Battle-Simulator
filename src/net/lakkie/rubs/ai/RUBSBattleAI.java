@@ -13,6 +13,7 @@ import net.lakkie.rubs.ai.components.pathfinder.AIPathfinder;
 import net.lakkie.rubs.storage.PositionedUnit;
 import net.lakkie.rubs.storage.RUBSBattle;
 import net.lakkie.rubs.storage.UnitActionType;
+import net.lakkie.rubs.storage.Vector2f;
 import net.lakkie.rubs.storage.Vector2i;
 
 public class RUBSBattleAI {
@@ -67,9 +68,13 @@ public class RUBSBattleAI {
 
 	public void init() {
 		this.lastChange = System.currentTimeMillis();
+		// preInit(not needed right now)
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			unit.ai = this;
+			unit.posExact = new Vector2f(unit.pos);
 			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
+		}
+		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			for (AIBattleComponent comp : this.components.values()) {
 				comp.initUnit(unit);
 			}

@@ -16,10 +16,9 @@ public class AIPathfinder extends AIBattleComponent {
 	public void initUnit(PositionedUnit unit) {
 		PositionedUnit targetUnit = this.ai.battle.getNearestUnit(unit, false);
 		float multiplier = unit.decision == null ? 1f : unit.decision.targetMultiplier;
-		Vector2f deltaRaw = new Vector2f(Vector2i.random(targetUnit.pos.distance(unit.pos) / 10 + 25, BasicUtils.getRandom()));
+		Vector2f deltaRaw = new Vector2f(Vector2i.random(targetUnit.pos.distance(unit.pos) / 10 + 50, BasicUtils.getRandom())).add(targetUnit.posExact.subtract(unit.posExact));
 		Vector2i delta = deltaRaw.multiply(new Vector2f(multiplier)).round();
-		unit.aiTargetPos = targetUnit.pos.add(delta);
-		unit.posExact = new Vector2f(unit.pos);
+		unit.aiTargetPos = unit.pos.add(delta);
 	}
 
 	public void tickUnit(PositionedUnit unit) {
@@ -43,9 +42,10 @@ public class AIPathfinder extends AIBattleComponent {
 	public void slowTickUnit(PositionedUnit unit) {
 		PositionedUnit targetUnit = this.ai.battle.getNearestUnit(unit, false);
 		float multiplier = unit.decision == null ? 1f : unit.decision.targetMultiplier;
-		Vector2f deltaRaw = new Vector2f(Vector2i.random(targetUnit.pos.distance(unit.pos) / 10 + 25, BasicUtils.getRandom()));
+		Vector2f deltaRaw = new Vector2f(Vector2i.random(targetUnit.pos.distance(unit.pos) / 10 + 50, BasicUtils.getRandom())).add(targetUnit.posExact.subtract(unit.posExact));
 		Vector2i delta = deltaRaw.multiply(new Vector2f(multiplier)).round();
-		unit.aiTargetPos = targetUnit.pos.add(delta);
+		unit.aiTargetPos = unit.pos.add(delta);
+		System.out.println("Decision: " + unit.decision);
 	}
 
 }
