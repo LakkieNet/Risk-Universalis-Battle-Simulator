@@ -2,12 +2,12 @@ package net.lakkie.rubs.readers;
 
 import net.lakkie.acl.parser.ACLParser.ACLParserMachine;
 
-public class GraphicsProperties extends ConfigurationReader {
+public class GraphicsPropertiesReader extends ConfigurationReader {
 
-	private static final GraphicsProperties instance = new GraphicsProperties();
+	private static final GraphicsPropertiesReader instance = new GraphicsPropertiesReader();
 	public int fps;
 	
-	public GraphicsProperties() {
+	public GraphicsPropertiesReader() {
 		super("Assets/Configs/GraphicsProperties.txt");
 	}
 
@@ -20,7 +20,7 @@ public class GraphicsProperties extends ConfigurationReader {
 		}
 	}
 	
-	public static GraphicsProperties getInstance() {
+	public static GraphicsPropertiesReader getInstance() {
 		return instance;
 	}
 

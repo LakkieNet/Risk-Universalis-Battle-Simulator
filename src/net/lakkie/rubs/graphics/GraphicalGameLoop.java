@@ -3,7 +3,7 @@ package net.lakkie.rubs.graphics;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import net.lakkie.rubs.readers.GraphicsProperties;
+import net.lakkie.rubs.readers.GraphicsPropertiesReader;
 
 public class GraphicalGameLoop implements Runnable {
 
@@ -16,7 +16,7 @@ public class GraphicalGameLoop implements Runnable {
 	}
 
 	public void run() {
-		long renderDelay = 1000 / GraphicsProperties.getInstance().fps;
+		long renderDelay = 1000 / GraphicsPropertiesReader.getInstance().fps;
 		long lastRender = System.currentTimeMillis();
 		while (true) {
 			long curr = System.currentTimeMillis();

@@ -1,0 +1,7 @@
+damage_properties = {
+
+	damage_tick_millis = 50
+	
+	
+
+}

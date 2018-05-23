@@ -19,7 +19,6 @@ import javax.swing.filechooser.FileFilter;
 
 import net.lakkie.rubs.NamingUtils;
 import net.lakkie.rubs.storage.RUBSBattle;
-import net.lakkie.rubs.util.BasicUtils;
 import net.lakkie.rubs.util.CipherUtils;
 import net.lakkie.rubs.util.RUBSLogger;
 import net.lakkie.rubs.util.ReaderUtils;
@@ -85,7 +84,7 @@ public class MenuStart extends JFrame {
 					setup.textAreaComment.setText(battle.getComment());
 					setup.updateTroopInfo();
 					RUBSLogger.logger().info("Successfully loaded save: " + selection.getAbsolutePath());
-					RUBSLogger.logger().info("Army is:\n" + BasicUtils.formatStringObject(battle));
+					RUBSLogger.logger().info("Army is:\n" + battle);
 				} catch (Exception e) {
 					RUBSLogger.logger().warning("Error loading save: " + selection.getAbsolutePath());
 					JOptionPane.showMessageDialog(null, "Error reading the file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -45,7 +45,6 @@ public class AIPathfinder extends AIBattleComponent {
 		Vector2f deltaRaw = new Vector2f(Vector2i.random(targetUnit.pos.distance(unit.pos) / 10 + 50, BasicUtils.getRandom())).add(targetUnit.posExact.subtract(unit.posExact));
 		Vector2i delta = deltaRaw.multiply(new Vector2f(multiplier)).round();
 		unit.aiTargetPos = unit.pos.add(delta);
-		System.out.println("Decision: " + unit.decision);
 	}
 
 }
