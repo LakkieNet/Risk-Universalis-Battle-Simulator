@@ -1,7 +1,9 @@
 package net.lakkie.rubs.storage;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
@@ -106,6 +108,17 @@ public class PositionedUnit implements Serializable {
 	
 	public String toString() {
 		return String.format("[pos=%s,infantry=%s,cavalry=%s,armor=%s]", this.pos, this.infantry, this.cavalry, this.armor);
+	}
+
+	public int getIntersectionArea(PositionedUnit unit) {
+		Rectangle rectThis = new Rectangle(this.pos.x, this.pos.y, this.getRenderWidth(), this.getRenderHeight());
+		Rectangle rectTarget = new Rectangle(unit.pos.x, unit.pos.y, unit.getRenderWidth(), unit.getRenderHeight());
+		Dimension size = rectThis.intersection(rectTarget).getSize();
+		return size.width * size.height;
+	}
+	
+	public float getMoraleScalar() {
+		return (this.getMorale() + 300) / 2;
 	}
 
 }

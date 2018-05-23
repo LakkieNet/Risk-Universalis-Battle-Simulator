@@ -54,6 +54,9 @@ public class RUBSBattleAI {
 	}
 
 	public void tick() {
+		for (AIBattleComponent comp : this.components.values()) {
+			comp.singleTick();
+		}
 		long currentTime = System.currentTimeMillis();
 		if (currentTime - this.lastChange >= 1000) {
 			this.lastChange = currentTime;

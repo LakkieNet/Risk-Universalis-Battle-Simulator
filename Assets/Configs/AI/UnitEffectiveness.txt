@@ -1,0 +1,31 @@
+# This file determines the damage on a 1 on 1, no morale battle
+
+effectiveness = {
+
+	id = "infantry"
+	
+	infantry_base = 1.0
+	cavalry_base = 0.5
+	armor_base = 0.1
+
+}
+
+effectiveness = {
+
+	id = "cavalry"
+	
+	infantry_base = 2.5
+	cavalry_base = 1.0
+	armor_base = 0.15
+
+}
+
+effectiveness = {
+
+	id = "armor"
+	
+	infantry_base = 2.25
+	cavalry_base = 1.75
+	armor_base = 0.6
+
+}
