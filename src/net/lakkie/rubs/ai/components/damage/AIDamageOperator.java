@@ -40,13 +40,12 @@ public class AIDamageOperator extends AIBattleComponent {
 			PositionedUnit target = this.ai.battle.getNearestUnit(unit, false);
 			float intersectionArea = (float) target.getIntersectionArea(unit);
 			if (intersectionArea > 0) {
-				float[] kills = this.calcPerDamage(unit, target);
-				for (int i = 0; i < kills.length; i++)
-					kills[i] *= intersectionArea;
+				float intersectionScalar = intersectionArea / (target.getRenderWidth() * target.getRenderHeight());
+				float[] kills = this.calcDamage(unit, target, intersectionScalar);
 				// These 3 floats are the final enemy kills
-				int infantryKills = (int) (kills[0] * this.dwc.getWeight("infantry").infantryWeight);
-				int cavalryKills = (int) (kills[1] * this.dwc.getWeight("infantry").infantryWeight);
-				int armorKills = (int) (kills[2] * this.dwc.getWeight("infantry").infantryWeight);
+				int infantryKills = (int) (kills[0]);
+				int cavalryKills = (int) (kills[1]);
+				int armorKills = (int) (kills[2]);
 				target.infantry -= infantryKills;
 				target.cavalry -= cavalryKills;
 				target.armor -= armorKills;
@@ -54,21 +53,20 @@ public class AIDamageOperator extends AIBattleComponent {
 		}
 	}
 
-	/**
-	 * Gets the damage that 1 pixel will do on another if intersecting.
-	 * 
-	 * @param a
-	 *              Attacking unit
-	 * @param d
-	 *              Defending unit
-	 * @return The damage per pixel. Index <tt>0</tt> is infantry damage,
-	 *         <tt>1</tt> is cavalry damage, and <tt>2</tt> is armor damage.
-	 */
-	public float[] calcPerDamage(PositionedUnit a, PositionedUnit d) {
+	public float[] calcDamage(PositionedUnit a, PositionedUnit d, float intersectionScalar) {
 		float[] result = new float[3];
-		float moraleScalarA = a.getMoraleScalar();
-		float moraleScalarD = a.getMoraleScalar();
-		result[0] = moraleScalarA * moraleScalarD;
+		float infantryScalar = intersectionScalar * (float) (a.infantry);
+		result[0] += a.getMoraleScalar() * this.dwc.getWeight("infantry").infantryWeight * infantryScalar;
+		result[0] += a.getMoraleScalar() * this.dwc.getWeight("infantry").cavalryWeight * infantryScalar;
+		result[0] += a.getMoraleScalar() * this.dwc.getWeight("infantry").armorWeight * infantryScalar;
+		float cavalryScalar = intersectionScalar * (float) (a.cavalry);
+		result[1] += a.getMoraleScalar() * this.dwc.getWeight("cavalry").infantryWeight * cavalryScalar;
+		result[1] += a.getMoraleScalar() * this.dwc.getWeight("cavalry").cavalryWeight * cavalryScalar;
+		result[1] += a.getMoraleScalar() * this.dwc.getWeight("cavalry").armorWeight * cavalryScalar;
+		float armorScalar = intersectionScalar * (float) (a.armor);
+		result[2] += a.getMoraleScalar() * this.dwc.getWeight("armor").infantryWeight * armorScalar;
+		result[2] += a.getMoraleScalar() * this.dwc.getWeight("armor").cavalryWeight * armorScalar;
+		result[2] += a.getMoraleScalar() * this.dwc.getWeight("armor").armorWeight * armorScalar;
 		return result;
 	}
 
