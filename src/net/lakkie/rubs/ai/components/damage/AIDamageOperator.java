@@ -69,6 +69,7 @@ public class AIDamageOperator extends AIBattleComponent {
 		float moraleScalarA = a.getMoraleScalar();
 		float moraleScalarD = a.getMoraleScalar();
 		result[0] = moraleScalarA * moraleScalarD;
+		return result;
 	}
 
 }
