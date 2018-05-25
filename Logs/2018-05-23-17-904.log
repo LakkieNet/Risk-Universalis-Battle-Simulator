@@ -1,4 +1,0 @@
-(14-00-17 INFO): Creating log on net.lakkie.rubs: 2018-05-23-17-904
-(14-00-17 INFO): Successfully loaded save: /home/lakkie/git/Risk-Universalis-Battle-Simulator/SaveFiles/Background.rudf
-(14-00-17 INFO): Army is:
-[name=Battle of the Background ,comment=A background battle.,attacking=[units=[[pos=[x=20,y=20],infantry=1000,cavalry=0,armor=0], [pos=[x=101,y=63],infantry=1000,cavalry=0,armor=0], [pos=[x=70,y=125],infantry=1250,cavalry=0,armor=0], [pos=[x=154,y=155],infantry=600,cavalry=0,armor=1200], [pos=[x=26,y=191],infantry=750,cavalry=250,armor=50], [pos=[x=153,y=21],infantry=200,cavalry=400,armor=0]]],defending=[units=[[pos=[x=6,y=74],infantry=1250,cavalry=0,armor=0], [pos=[x=75,y=42],infantry=1250,cavalry=0,armor=0], [pos=[x=49,y=-6],infantry=1250,cavalry=0,armor=0], [pos=[x=44,y=138],infantry=1250,cavalry=0,armor=0], [pos=[x=119,y=108],infantry=400,cavalry=0,armor=600], [pos=[x=121,y=27],infantry=200,cavalry=900,armor=50]]]]

@@ -1,4 +1,4 @@
 Tasks:
  - Add some more modifiers
    - 
- - Finish decision operations
+ - Fix mixed type damage

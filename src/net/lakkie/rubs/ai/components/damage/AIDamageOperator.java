@@ -23,7 +23,6 @@ public class AIDamageOperator extends AIBattleComponent {
 	}
 
 	public void slowTickUnit(PositionedUnit unit) {
-
 	}
 
 	public void singleTick() {
@@ -35,35 +34,49 @@ public class AIDamageOperator extends AIBattleComponent {
 	}
 
 	public void tickUnit(PositionedUnit unit) {
-
 		if (this.isDamageTick) {
 			PositionedUnit target = this.ai.battle.getNearestUnit(unit, false);
+			if (target == null) {
+				return;
+			}
 			float intersectionArea = (float) target.getIntersectionArea(unit);
 			if (intersectionArea > 0) {
 				float intersectionScalar = intersectionArea / (target.getRenderWidth() * target.getRenderHeight());
 				float[] kills = this.calcDamage(unit, target, intersectionScalar);
 				// These 3 floats are the final enemy kills
-				int infantryKills = (int) (kills[0]);
-				int cavalryKills = (int) (kills[1]);
-				int armorKills = (int) (kills[2]);
+				float infantryKills = kills[0];
+				float cavalryKills = kills[1];
+				float armorKills = kills[2];
 				target.infantry -= infantryKills;
+				if (target.infantry < 0) {
+					target.infantry = 0;
+				}
 				target.cavalry -= cavalryKills;
+				if (target.cavalry < 0) {
+					target.cavalry = 0;
+				}
 				target.armor -= armorKills;
+				if (target.armor < 0) {
+					target.armor = 0;
+				}
+				if (target.infantry == 0 && target.cavalry == 0 && target.armor == 0) {
+					unit.selfDestruct = true;
+				}
 			}
 		}
 	}
 
 	public float[] calcDamage(PositionedUnit a, PositionedUnit d, float intersectionScalar) {
 		float[] result = new float[3];
-		float infantryScalar = intersectionScalar * (float) (a.infantry);
+		float infantryScalar = intersectionScalar * (float) (a.infantry) * DamagePropertiesReader.inst.endDamageScalar;
 		result[0] += a.getMoraleScalar() * this.dwc.getWeight("infantry").infantryWeight * infantryScalar;
 		result[0] += a.getMoraleScalar() * this.dwc.getWeight("infantry").cavalryWeight * infantryScalar;
 		result[0] += a.getMoraleScalar() * this.dwc.getWeight("infantry").armorWeight * infantryScalar;
-		float cavalryScalar = intersectionScalar * (float) (a.cavalry);
+		float cavalryScalar = intersectionScalar * (float) (a.cavalry) * DamagePropertiesReader.inst.endDamageScalar;
 		result[1] += a.getMoraleScalar() * this.dwc.getWeight("cavalry").infantryWeight * cavalryScalar;
 		result[1] += a.getMoraleScalar() * this.dwc.getWeight("cavalry").cavalryWeight * cavalryScalar;
 		result[1] += a.getMoraleScalar() * this.dwc.getWeight("cavalry").armorWeight * cavalryScalar;
-		float armorScalar = intersectionScalar * (float) (a.armor);
+		float armorScalar = intersectionScalar * (float) (a.armor) * DamagePropertiesReader.inst.endDamageScalar;
 		result[2] += a.getMoraleScalar() * this.dwc.getWeight("armor").infantryWeight * armorScalar;
 		result[2] += a.getMoraleScalar() * this.dwc.getWeight("armor").cavalryWeight * armorScalar;
 		result[2] += a.getMoraleScalar() * this.dwc.getWeight("armor").armorWeight * armorScalar;

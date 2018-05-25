@@ -2,4 +2,6 @@ damage_properties = {
 
 	damage_tick_millis = 50
 	
+	end_damage_scalar = 0.00005
+	
 }

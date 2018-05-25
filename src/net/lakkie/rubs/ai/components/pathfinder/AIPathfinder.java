@@ -2,7 +2,9 @@ package net.lakkie.rubs.ai.components.pathfinder;
 
 import net.lakkie.rubs.ai.RUBSBattleAI;
 import net.lakkie.rubs.ai.components.AIBattleComponent;
+import net.lakkie.rubs.ai.components.pathfinder.readers.MovementPropertiesConfig;
 import net.lakkie.rubs.storage.PositionedUnit;
+import net.lakkie.rubs.storage.UnitType;
 import net.lakkie.rubs.storage.Vector2f;
 import net.lakkie.rubs.storage.Vector2i;
 import net.lakkie.rubs.util.BasicUtils;
@@ -22,7 +24,15 @@ public class AIPathfinder extends AIBattleComponent {
 	}
 
 	public void tickUnit(PositionedUnit unit) {
-		float speed = 3.0f;
+		float speed;
+		UnitType type = unit.getType();
+		if (type == UnitType.INFANTRY) {
+			speed = MovementPropertiesConfig.inst.infantrySpeed;
+		} else if (type == UnitType.CAVALRY) {
+			speed = MovementPropertiesConfig.inst.cavalrySpeed;
+		} else {
+			speed = MovementPropertiesConfig.inst.armorSpeed;
+		}
 
 		if (unit.aiTargetPos.y > unit.posExact.y) {
 			unit.posExact.y += speed;

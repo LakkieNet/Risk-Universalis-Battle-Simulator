@@ -34,11 +34,11 @@ public class RUBSBattleAI {
 		// Setting the "originalTotal" field for test case purposes
 		for (PositionedUnit unit : this.battle.getAttacking().getUnits()) {
 			unit.actionType = UnitActionType.ATTACKING;
-			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
+			unit.originalTotal = unit.getSize();
 		}
 		for (PositionedUnit unit : this.battle.getDefending().getUnits()) {
 			unit.actionType = UnitActionType.DEFENDING;
-			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
+			unit.originalTotal = unit.getSize();
 		}
 		this.components.put(ID_DECISION, new AIDecisionOperator(this));
 		this.components.put(ID_PATHFINDER, new AIPathfinder(this));
@@ -48,6 +48,9 @@ public class RUBSBattleAI {
 	public void slowTick() {
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			for (AIBattleComponent comp : this.components.values()) {
+				if (unit == null) {
+					break;
+				}
 				comp.slowTickUnit(unit);
 			}
 		}
@@ -64,7 +67,13 @@ public class RUBSBattleAI {
 		}
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			for (AIBattleComponent comp : this.components.values()) {
+				if (unit == null) {
+					break;
+				}
 				comp.tickUnit(unit);
+			}
+			if (unit.selfDestruct) {
+				unit.getArmy(this.battle).removeUnit(unit);
 			}
 		}
 	}
@@ -75,15 +84,21 @@ public class RUBSBattleAI {
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			unit.ai = this;
 			unit.posExact = new Vector2f(unit.pos);
-			unit.originalTotal = unit.infantry + unit.cavalry + unit.armor;
+			unit.originalTotal = unit.getSize();
 		}
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			for (AIBattleComponent comp : this.components.values()) {
+				if (unit == null) {
+					break;
+				}
 				comp.initUnit(unit);
 			}
 		}
 		for (PositionedUnit unit : this.battle.getAllUnits()) {
 			for (AIBattleComponent comp : this.components.values()) {
+				if (unit == null) {
+					break;
+				}
 				comp.postInitUnit(unit);
 			}
 		}

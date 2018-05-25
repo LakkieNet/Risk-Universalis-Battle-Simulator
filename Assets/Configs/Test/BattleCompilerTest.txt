@@ -1,0 +1,10 @@
+test_case = {
+
+	classpath = "net.lakkie.rubstest.tests.BattleCompilerTest"
+	
+	arguments = {
+		"Assets/Configs/Battles/BigBattle.txt"
+		"SaveFiles/Big Battle.rudf"
+	}
+
+}

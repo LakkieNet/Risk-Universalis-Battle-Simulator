@@ -1,0 +1,51 @@
+battle = {
+
+	name = "Test Battle of Bigness"
+	
+	comment = {
+		"This is a big-scale battle."
+		""
+		"This demonstrates a 4x4 field of units 20 pixels apart."
+	}
+
+	# Order is X, Y, Infantry amount, Cavalry amount, Armor amount
+
+	defending_army = {
+		unit = { 0 0 1000 0 0 }
+		unit = { 20 0 1000 0 0 }
+		unit = { 40 0 1000 0 0 }
+		unit = { 60 0 1000 0 0 }
+		unit = { 0 20 1000 0 0 }
+		unit = { 20 20 1000 0 0 }
+		unit = { 40 20 1000 0 0 }
+		unit = { 60 20 1000 0 0 }
+		unit = { 0 40 1000 0 0 }
+		unit = { 20 40 1000 0 0 }
+		unit = { 40 40 1000 0 0 }
+		unit = { 60 40 1000 0 0 }
+		unit = { 0 60 1000 0 0 }
+		unit = { 20 60 1000 0 0 }
+		unit = { 40 60 1000 0 0 }
+		unit = { 60 60 1000 0 0 }
+	}
+	
+	attacking_army = {
+		unit = { 0 0 1000 0 0 }
+		unit = { 20 0 1000 0 0 }
+		unit = { 40 0 1000 0 0 }
+		unit = { 60 0 1000 0 0 }
+		unit = { 0 20 1000 0 0 }
+		unit = { 20 20 1000 0 0 }
+		unit = { 40 20 1000 0 0 }
+		unit = { 60 20 1000 0 0 }
+		unit = { 0 40 1000 0 0 }
+		unit = { 20 40 1000 0 0 }
+		unit = { 40 40 1000 0 0 }
+		unit = { 60 40 1000 0 0 }
+		unit = { 0 60 1000 0 0 }
+		unit = { 20 60 1000 0 0 }
+		unit = { 40 60 1000 0 0 }
+		unit = { 60 60 1000 0 0 }
+	}
+	
+}

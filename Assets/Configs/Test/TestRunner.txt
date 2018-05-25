@@ -1,5 +1,3 @@
 test_sequence = {
-	"morale"
-	"logging"
-	"battle_reader"
+	"battle_compiler"
 }

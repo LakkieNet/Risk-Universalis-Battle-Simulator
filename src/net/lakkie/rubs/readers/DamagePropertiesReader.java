@@ -7,6 +7,7 @@ public class DamagePropertiesReader extends ConfigurationReader {
 	public static final DamagePropertiesReader inst = new DamagePropertiesReader();
 	
 	public int damageTickMillis;
+	public float endDamageScalar;
 	
 	public DamagePropertiesReader() {
 		super("Assets/Configs/AI/DamageProperties.txt");
@@ -18,6 +19,9 @@ public class DamagePropertiesReader extends ConfigurationReader {
 		}
 		if (token.equals("damage_tick_millis")) {
 			this.damageTickMillis = machine.readInt();
+		}
+		if (token.equals("end_damage_scalar")) {
+			this.endDamageScalar = (float) machine.readDouble();
 		}
 	}
 

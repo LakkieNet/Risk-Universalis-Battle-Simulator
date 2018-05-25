@@ -8,6 +8,7 @@ public class BasicUtils {
 
 	private static final DecimalFormat commaFormat = new DecimalFormat("###,###,###,###");
 	private static final DecimalFormat slopeFormat = new DecimalFormat("###,##0.00");
+	private static final DecimalFormat moraleFormat = new DecimalFormat("##0.##");
 	private static final Font unitInfoFont = new Font("Arial", Font.PLAIN, 8);
 	private static final Font commentFont = new Font("Arial", Font.PLAIN, 15);
 	private static final Random random = new Random();
@@ -94,6 +95,10 @@ public class BasicUtils {
 	
 	public static Random getRandom() {
 		return random;
+	}
+	
+	public static DecimalFormat getMoraleFormat() {
+		return moraleFormat;
 	}
 
 }

@@ -1,0 +1,9 @@
+movement_properties = {
+	
+	infantry_speed = 2.0
+	
+	cavalry_speed = 2.8
+	
+	armor_speed = 3.4
+
+}

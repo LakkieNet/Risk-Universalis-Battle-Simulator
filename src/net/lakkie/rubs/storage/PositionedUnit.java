@@ -1,7 +1,6 @@
 package net.lakkie.rubs.storage;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -17,13 +16,14 @@ public class PositionedUnit implements Serializable {
 
 	private static final long serialVersionUID = -4009259352660549560L;
 	public Vector2i pos;
-	public int infantry = 1000, cavalry = 0, armor = 0;
+	public float infantry = 1000, cavalry = 0, armor = 0;
 	public UnitActionType actionType = UnitActionType.GENERIC;
 	public transient RUBSBattleAI ai;
 	public transient Vector2i aiTargetPos;
 	public transient Vector2f posExact;
 	public transient int originalTotal;
 	public transient AIArmyDecision decision;
+	public transient boolean selfDestruct = false;
 
 	public PositionedUnit(Vector2i pos, UnitActionType actionType) {
 		this.pos = pos;
@@ -65,8 +65,8 @@ public class PositionedUnit implements Serializable {
 	public void draw(Graphics g, Vector2i offset) {
 		BufferedImage image = this.getImage();
 		g.drawImage(image, this.pos.x + offset.x, this.pos.y + offset.y, image.getWidth() / 3, image.getHeight() / 3, null);
-		String numbers = String.format("%s-%s-%s", BasicUtils.formatCommas(this.infantry), BasicUtils.formatCommas(this.cavalry),
-				BasicUtils.formatCommas(this.armor));
+		String numbers = String.format("%s-%s-%s", BasicUtils.formatCommas(Math.round(this.infantry)), BasicUtils.formatCommas(Math.round(this.cavalry)),
+				BasicUtils.formatCommas(Math.round(this.armor)));
 		g.setColor(Color.black);
 		g.setFont(BasicUtils.getUnitInfoFont());
 		int posX = this.pos.x + offset.x;
@@ -75,7 +75,7 @@ public class PositionedUnit implements Serializable {
 	}
 
 	public int getSize() {
-		return this.infantry + this.cavalry + this.armor;
+		return Math.round(this.infantry) + Math.round(this.cavalry) + Math.round(this.armor);
 	}
 
 	public int getRenderWidth() {
@@ -101,11 +101,11 @@ public class PositionedUnit implements Serializable {
 	public UnitGroup getArmy(RUBSBattle in) {
 		return this.inArmy(in.getAttacking()) ? in.getAttacking() : in.getDefending();
 	}
-	
+
 	public boolean inArmy(UnitGroup army) {
 		return army.getUnits().contains(this);
 	}
-	
+
 	public String toString() {
 		return String.format("[pos=%s,infantry=%s,cavalry=%s,armor=%s]", this.pos, this.infantry, this.cavalry, this.armor);
 	}
@@ -113,10 +113,10 @@ public class PositionedUnit implements Serializable {
 	public int getIntersectionArea(PositionedUnit unit) {
 		Rectangle rectThis = new Rectangle(this.pos.x, this.pos.y, this.getRenderWidth(), this.getRenderHeight());
 		Rectangle rectTarget = new Rectangle(unit.pos.x, unit.pos.y, unit.getRenderWidth(), unit.getRenderHeight());
-		Dimension size = rectThis.intersection(rectTarget).getSize();
-		return size.width * size.height;
+		Rectangle intersection = rectThis.intersection(rectTarget);
+		return rectThis.intersects(rectTarget) ? intersection.width * intersection.height : 0;
 	}
-	
+
 	public float getMoraleScalar() {
 		return (this.getMorale() + 300) / 2;
 	}
